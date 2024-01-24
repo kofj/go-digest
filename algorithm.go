@@ -21,6 +21,8 @@ import (
 	"io"
 	"regexp"
 	"sync"
+
+	"github.com/minio/sha256-simd"
 )
 
 // Algorithm identifies and implementation of a digester by an identifier.
@@ -179,6 +181,9 @@ func (a Algorithm) Hash() hash.Hash {
 
 	algorithmsLock.RLock()
 	defer algorithmsLock.RUnlock()
+	if string(a) == "sha256" {
+		return sha256.New()
+	}
 	return algorithms[a].New()
 }
 
