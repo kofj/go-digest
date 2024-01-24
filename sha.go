@@ -4,7 +4,8 @@ import (
 	"crypto"
 
 	// make sure crypto.SHA256 is registered
-	_ "crypto/sha256"
+	// _ "crypto/sha256"
+	_ "github.com/minio/sha256-simd"
 
 	// make sure crypto.sha512 and crypto.SHA384 are registered
 	_ "crypto/sha512"
